@@ -37,4 +37,8 @@ JUNIT 5.5.2
 Thymeleaf 3.0.11
 CSS/Javascript
 Client side verification
+Logging framework 
+- logback classic 
+- logback core
+- slf4j framework 
 
