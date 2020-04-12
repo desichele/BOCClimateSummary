@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" 
+				xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Climate Summary</title>
+  <meta charset="utf-8"/>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+</head>
+ 
+	<body>
+    <div class="container my-2">
+    <div class="card">
+    <div class="card-body">
+        <div th:switch="${climates}" class="container my-5">
+            <p class="my-5">
+               <form th:action="@{/climateSummaryFilterByDate(from=${dateFrom}, to =${dateTo})}" method="post">
+				  	 <div class = "row">
+				        <label>From:</label>
+				        <input type="date" class="form-control" name="dateFrom" th:value="${#dates.format(dateFrom, 'yyyy-MM-dd')}" />
+				    </div>
+				    <div class="row">
+				        <label>To:</label>
+				        <input type="date" class="form-control" name="dateTo" th:value="${#dates.format(dateTo, 'yyyy-MM-dd')}" />
+				    </div>
+			    	<input type="submit" value="Submit"/>
+			  	</form>
+            </p>
+            <div class="col-md-10">
+                <h2 th:case="null">Sorry, but there was no record found !!</h2>
+                <div th:case="*">
+                    <table class="table table-striped table-responsive-md">
+                        <thead>
+                            <tr>
+                                <th>Station Name</th>
+                                <th>Date</th>
+                                <th>Mean Temp</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="climate : ${climates}">
+                                <td th:text="${climate.Station_Name}"></td>
+                                <td th:text="${#dates.format(climate.Date, 'yyyy-MM-dd')}"></td>
+                                <td ><a th:href="@{/climatedetail(id=${climate.id})}" th:text ="${climate.Mean_Temp}"></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+ </div>
+</body>
+</html>

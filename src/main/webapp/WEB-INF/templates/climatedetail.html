@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" 
+				xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Climate Detail</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+
+<h2>Climate Details</h2>
+
+<div class="my-3">
+    <p><strong>Station Name:</strong> <span th:text="${climateDetail.Station_Name}"></span></p>
+    <p><strong>Highest Monthly Max Temp:</strong> <span th:text="${climateDetail.Highest_Monthly_Maxi_Temp}"></span></p>
+    <p><strong>Lowest Monthly Min Temp:</strong> <span th:text="${climateDetail.Lowest_Monthly_Min_Temp}"></span></p>
+    <p><strong>Province:</strong> <span th:text="${climateDetail.Province}"></span></p>
+    <p><strong>Date:</strong> <span th:text="${#dates.format(climateDetail.Date, 'yyyy-MM-dd')}"></span></p>
+    <p><strong>Mean Temp:</strong> <span th:text="${climateDetail.Mean_Temp}"></span></p>
+</div>
+<a th:href="@{/}">Go Back to Climate Summary</a>
+
+</body>
+</html>
