@@ -1,0 +1,13 @@
+com\boc\weatherapp\climateSummaryException\ClimateSummaryInternalException.class
+com\boc\weatherapp\climateSummaryException\ClimateDetailDateFormatException.class
+com\boc\weatherapp\climateSummaryException\ClimateDetailNotFoundException.class
+com\boc\weatherapp\model\ClimateSummary.class
+com\boc\weatherapp\repo\ClimateDataRepo.class
+com\boc\weatherapp\climateSummaryException\ClimateSummaryExceptionController.class
+com\boc\weatherapp\config\ClimateSummaryBatchConfig.class
+com\boc\weatherapp\view\ViewConfiguration.class
+com\boc\weatherapp\controller\WeatherController.class
+com\boc\weatherapp\batch\DBWrite.class
+com\boc\weatherapp\batch\Processor.class
+com\boc\weatherapp\climateSummaryException\ClimateSummaryCustomException.class
+com\boc\weatherapp\WeatherAppApplication.class

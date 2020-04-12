@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" 
+				xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Climate Detail</title>
+  <meta charset="utf-8"/>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+</head>
+
+<div class="card">
+	<div class="card-body">
+		<h5 class="card-title">Climate Details</h5>
+	    <p class="card-text"><strong>Station Name:</strong> <span th:text="${climateDetail.Station_Name}"></span></p>
+	    <p class="card-text"><strong>Highest Monthly Max Temp:</strong> <span th:text="${climateDetail.Highest_Monthly_Maxi_Temp}"></span></p>
+	    <p class="card-text"><strong>Lowest Monthly Min Temp:</strong> <span th:text="${climateDetail.Lowest_Monthly_Min_Temp}"></span></p>
+	    <p class="card-text"><strong>Province:</strong> <span th:text="${climateDetail.Province}"></span></p>
+	    <p class="card-text"><strong>Date:</strong> <span th:text="${#dates.format(climateDetail.Date, 'yyyy-MM-dd')}"></span></p>
+	    <p class="card-text"><strong>Mean Temp:</strong> <span th:text="${climateDetail.Mean_Temp}"></span></p>
+	    <a th:href="@{/}">Go Back to Climate Summary</a>
+	</div>
+
+</div>
+
+</body>
+</html>
