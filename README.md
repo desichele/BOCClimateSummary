@@ -3,7 +3,7 @@ Address : https://github.com/desichele/BOCClimateSummary
 
 Welcome, 
 
-The climate summary project is build with MAVEN. Please follow the instruction below to compile test and run the application. 
+The climate summary project is build with MAVEN. After downloading please rename directory mvn -> .mvn and settings -> .settings first. Please follow the instruction given below to compile test and run the application. 
 
 All the commands needs to run on application root /WeatherApp directory where pom.xml is present. 
 
