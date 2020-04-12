@@ -33,6 +33,10 @@ import com.boc.weatherapp.climateSummaryException.ClimateDetailNotFoundException
 import com.boc.weatherapp.climateSummaryException.ClimateSummaryCustomException;
 import com.boc.weatherapp.model.ClimateSummary;
 import com.boc.weatherapp.repo.ClimateDataRepo;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /*
  * Main Controller object to handle incoming request 
  * */
@@ -49,6 +53,8 @@ public class WeatherController {
 	ClimateDataRepo dataRepo;
 	
 	private List<ClimateSummary> lstClimateSummary;
+	Logger log = LoggerFactory.getLogger(this.getClass());
+	private int jobCount = 0;
 	
 	@PostConstruct
     public void init() throws Exception {	
@@ -61,11 +67,25 @@ public class WeatherController {
 	 * Output: redirects user to /climate page where all climate summary has been displayed
 	 * */
 	@GetMapping
-	public String index() throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
-		Map<String, JobParameter> maps = new HashMap<>();
-		maps.put("time", new JobParameter(System.currentTimeMillis()));
-		JobParameters parameters = new JobParameters(maps);
-		JobExecution jobExecution = launcher.run(job, parameters);
+	public String index() {
+		try {
+			if(jobCount==0) {
+				log.info("BOC Climate Weather started on localhost 8080");
+				Map<String, JobParameter> maps = new HashMap<>();
+				maps.put("time", new JobParameter(System.currentTimeMillis()));
+				JobParameters parameters = new JobParameters(maps);
+				log.info("H2 Database Upload started");
+				JobExecution jobExecution = launcher.run(job, parameters);
+				log.info("H2 Database Upload finished successfully.");
+				
+				jobCount+=1;
+			}
+			log.info("Redirecting user to homepage.");
+		}
+		catch(JobExecutionAlreadyRunningException ex) {log.error(ex.getMessage());}
+		catch(JobRestartException ex) {log.error(ex.getMessage());}
+		catch(JobInstanceAlreadyCompleteException ex) {log.error(ex.getMessage());}
+		catch(JobParametersInvalidException ex) {log.error(ex.getMessage());}
 		return "redirect:/climate";
 	}
 	  
@@ -86,20 +106,21 @@ public class WeatherController {
 	{
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		Date from, to;
-		try{
-			from = df.parse(dateFrom);
-		}
-		catch(ParseException ex) {throw new ClimateDetailDateFormatException();}
-		try {
-			to = df.parse(dateTo);
-		}
-		catch(ParseException ex) {throw new ClimateDetailDateFormatException();}
+		try{from = df.parse(dateFrom);}
+		catch(ParseException ex) {
+			log.error("Date format exception for dateFrom parameter : " + ex.getMessage() );
+			throw new ClimateDetailDateFormatException();}
+		try {to = df.parse(dateTo);}
+		catch(ParseException ex) {
+			log.error("Date format exception for dateTo parameter : " + ex.getMessage() );
+			throw new ClimateDetailDateFormatException();}
 		if (from.compareTo(to) <= 0) {
 			lstClimateSummary = dataRepo.getAllBetweenDates(from, to);
 			model.addAttribute("climates",lstClimateSummary);
 			return "climateSummary";
 		}
-		else throw new ClimateSummaryCustomException();
+		else {log.error("Date exception From date needs to be older");
+			throw new ClimateSummaryCustomException();}
 	}
 	
 	/*
@@ -112,7 +133,9 @@ public class WeatherController {
 		try {
 			climateId = Integer.parseInt(id);
 		}
-		catch(NumberFormatException ex) {throw new ClimateDetailNotFoundException();}
+		catch(NumberFormatException ex) {
+			log.error("Climate Id parse error for id : " + id + " " + ex.getMessage());
+			throw new ClimateDetailNotFoundException();}
 		model.addAttribute("climateDetail", dataRepo.findById(climateId).orElseThrow(ClimateDetailNotFoundException::new));
 		return "climateDetail";
 	}

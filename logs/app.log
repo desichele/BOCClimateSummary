@@ -1,0 +1,7 @@
+2020-04-12 16:19:31,945 INFO com.boc.weatherapp.WeatherAppApplication [restartedMain] Starting WeatherAppApplication on DESKTOP-RI42F1V with PID 19140 (C:\Spring-Workspace\WeatherApp\target\classes started by sanju in C:\Spring-Workspace\WeatherApp)
+2020-04-12 16:19:31,949 INFO com.boc.weatherapp.WeatherAppApplication [restartedMain] No active profile set, falling back to default profiles: default
+2020-04-12 16:19:38,351 INFO com.boc.weatherapp.WeatherAppApplication [restartedMain] Started WeatherAppApplication in 7.068 seconds (JVM running for 8.809)
+2020-04-12 16:19:50,375 INFO com.boc.weatherapp.controller.WeatherController [http-nio-8080-exec-1] BOC Climate Weather started on localhost 8080
+2020-04-12 16:19:50,379 INFO com.boc.weatherapp.controller.WeatherController [http-nio-8080-exec-1] H2 Database Upload started
+2020-04-12 16:19:51,729 INFO com.boc.weatherapp.controller.WeatherController [http-nio-8080-exec-1] H2 Database Upload finished successfully.
+2020-04-12 16:19:51,729 INFO com.boc.weatherapp.controller.WeatherController [http-nio-8080-exec-1] Redirecting user to homepage.
