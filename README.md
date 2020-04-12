@@ -25,19 +25,19 @@ This should create the required .jar file (in this case target\WeatherApp-0.0.1-
 
 Technology stack used:
 
--JAVA - 1.8
--Spring Boot - 2.2.6
--Spring Boot Started web - 2.2.6
--Spring Data JPA - 2.2.6
--Spring ORM - 5.2.5
--Spring MVC - 5.2.5
--Maven built to compile/test/run project
+- JAVA - 1.8
+- Spring Boot - 2.2.6
+- Spring Boot Started web - 2.2.6
+- Spring Data JPA - 2.2.6
+- Spring ORM - 5.2.5
+- Spring MVC - 5.2.5
+- Maven built to compile/test/run project
 
--JUNIT 5.5.2
--Thymeleaf 3.0.11
--CSS/Javascript
--Client side verification
--Logging framework 
+- JUNIT 5.5.2
+- Thymeleaf 3.0.11
+- CSS/Javascript
+- Client side verification
+- Logging framework 
 	- logback classic 
 	- logback core
 	- slf4j framework 
